@@ -142,6 +142,28 @@ public class BinarySearchTree<T extends Comparable<T>> {
 	public void preOrderStack() {
 		Stack<BSTNode<T>> pre = new Stack<BSTNode<T>>();
 		
+		pre.push(root);
+		
+		while (!pre.isEmpty()) {
+			
+			BSTNode<T> node = pre.pop();
+			System.out.print(node + " ");
+			
+			if (node.rightChild != null) {
+				
+				pre.push(node.rightChild);
+				
+			}
+			
+			if (node.leftChild != null) {
+				
+				pre.push(node.leftChild);
+				
+			}	
+		}
+		
+		System.out.println();
+		
 	}
 		
 
@@ -151,11 +173,9 @@ public class BinarySearchTree<T extends Comparable<T>> {
 	//For a bst this will print the values in sorted order from smallest to largest
 	public void inOrder() {
 		
+		System.out.println("InOrder test commit");
+		
 		inOrderRecurse(root); 
-		
-		System.out.println();
-		
-		System.out.print("InOrder test commit");
 		
 	}
 	
