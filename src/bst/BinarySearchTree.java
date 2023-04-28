@@ -3,7 +3,7 @@ package bst;
 import java.util.Stack;
 
 public class BinarySearchTree<T extends Comparable<T>> {
-	
+	//test
 	private static class BSTNode<T extends Comparable<T>>{
 		private T data;
 		private BSTNode<T> leftChild;
@@ -173,6 +173,28 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		}
 		
 		
+		pre.push(root);
+		
+		while (!pre.isEmpty()) {
+			
+			BSTNode<T> node = pre.pop();
+			System.out.print(node + " ");
+			
+			if (node.rightChild != null) {
+				
+				pre.push(node.rightChild);
+				
+			}
+			
+			if (node.leftChild != null) {
+				
+				pre.push(node.leftChild);
+				
+			}	
+		}
+		
+		System.out.println();
+		
 	}
 		
 
@@ -182,9 +204,9 @@ public class BinarySearchTree<T extends Comparable<T>> {
 	//For a bst this will print the values in sorted order from smallest to largest
 	public void inOrder() {
 		
-		inOrderRecurse(root); 
-		
 		System.out.println("InOrder test commit");
+		
+		inOrderRecurse(root); 
 		
 	}
 	
@@ -210,12 +232,36 @@ public class BinarySearchTree<T extends Comparable<T>> {
 			
 		}
 	}
+	
 	//Traverse the tree in an inorder fashion but using a stack
 	public void inOrderStack() {
-		Stack<BSTNode<T>> in = new Stack<BSTNode<T>>();
 		
+		Stack<BSTNode<T>> in = new Stack<BSTNode<T>>();
+		BSTNode<T> current = root;
+		
+		while (!in.isEmpty() || current != null) {
+			
+			if (current != null) {
+				
+				in.push(current);
+				
+				current = current.leftChild;
+				
+			} else {
+				
+				BSTNode<T> node = in.pop();
+				
+				System.out.print(node + " ");
+				
+				current = node.rightChild;
+				
+			}
+		}
+		
+		System.out.println();
 		
 	}
+	
 	
 	//Traverse the tree in an postorder fashion
 	//Recurse on the children and then print the value in the current node
